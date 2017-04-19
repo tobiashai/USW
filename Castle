@@ -1,0 +1,51 @@
+import javafx.scene.image.Image;
+
+public class Castle {
+
+	private double posX;
+	private double posY;
+	private double health;
+	private boolean enemy;
+	private Image visage;
+
+	public Castle(double posX, double posY, double health, boolean enemy, Image visage) {
+		this.posX = posX;
+		this.posY = posY;
+		this.health = health;
+		this.enemy = enemy;
+		this.visage = visage;
+	}
+
+	public double getPosX() {
+		return posX;
+	}
+	public double getPosY() {
+		return posY;
+	}
+	public double getHealth() {
+		return health;
+	}
+	public boolean isEnemy() {
+		return enemy;
+	}
+	public Image getVisage() {
+		return visage;
+	}
+
+	public void setPosX(double posX) {
+		this.posX = posX;
+	}
+	public void setPosY(double posY) {
+		this.posY = posY;
+	}
+	public void setHealth(double health) {
+		this.health = health;
+	}
+	public void setEnemy(boolean enemy) {
+		this.enemy = enemy;
+	}
+	public void setVisage(Image visage) {
+		this.visage = visage;
+	}
+
+}

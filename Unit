@@ -1,0 +1,99 @@
+import javafx.scene.image.Image;
+
+public class Unit {
+
+	private double posX;
+	private double posY;
+	private double health;
+	private boolean enemy;
+	private double aDmg;
+	private double aRng;
+	private double aSpd;
+	private double mSpd;
+	private double charge;
+	private double value;
+	private Image visage;
+
+	public Unit(double posX, double posY, double health, boolean enemy, double aDmg, double aRng, double aSpd, double mSpd, double charge, double value, Image visage) {
+		this.posX = posX;
+		this.posY = posY;
+		this.health = health;
+		this.enemy = enemy;
+		this.aDmg = aDmg;
+		this.aRng = aRng;
+		this.aSpd = aSpd;
+		this.mSpd = mSpd;
+		this.charge = charge;
+		this.value = value;
+		this.visage = visage;
+	}
+
+	public double getPosX() {
+		return posX;
+	}
+	public double getPosY() {
+		return posY;
+	}
+	public double getHealth() {
+		return health;
+	}
+	public boolean isEnemy() {
+		return enemy;
+	}
+	public double getaDmg() {
+		return aDmg;
+	}
+	public double getaRng() {
+		return aRng;
+	}
+	public double getaSpd() {
+		return aSpd;
+	}
+	public double getmSpd() {
+		return mSpd;
+	}
+	public double getCharge() {
+		return charge;
+	}
+	public double getValue() {
+		return value;
+	}
+	public Image getVisage() {
+		return visage;
+	}
+
+	public void setPosX(double posX) {
+		this.posX = posX;
+	}
+	public void setPosY(double posY) {
+		this.posY = posY;
+	}
+	public void setHealth(double health) {
+		this.health = health;
+	}
+	public void setEnemy(boolean enemy) {
+		this.enemy = enemy;
+	}
+	public void setaDmg(double aDmg) {
+		this.aDmg = aDmg;
+	}
+	public void setaRng(double aRng) {
+		this.aRng = aRng;
+	}
+	public void setaSpd(double aSpd) {
+		this.aSpd = aSpd;
+	}
+	public void setmSpd(double mSpd) {
+		this.mSpd = mSpd;
+	}
+	public void setCharge(double charge) {
+		this.charge = charge;
+	}
+	public void setValue(double value) {
+		this.value = value;
+	}
+	public void setVisage(Image visage) {
+		this.visage = visage;
+	}
+
+}

@@ -1,0 +1,152 @@
+import java.util.ArrayList;
+
+import javafx.scene.image.Image;
+import javafx.scene.shape.Circle;
+
+public class Ballista 
+{
+
+	private double posX;
+	private double posY;
+	private double spdX;
+	private double spdY;
+	private double gravity;
+	private double charge;
+	private Image visage;
+
+	private ArrayList<Circle> aim;
+
+	public Ballista(double posX, double posY, double spdX, double spdY, double gravity, double charge, Image visage)
+	{
+
+		this.posX = posX;
+		this.posY = posY;
+		this.spdX = spdX;
+		this.spdY = spdY;
+		this.gravity = gravity;
+		this.charge = charge;
+		this.visage = visage;
+
+	}
+
+	public double getPosX() {
+		return posX;
+	}
+
+	public void setPosX(double posX) {
+		this.posX = posX;
+	}
+
+	public double getPosY() {
+		return posY;
+	}
+
+	public void setPosY(double posY) {
+		this.posY = posY;
+	}
+
+	public double getSpdX() {
+		return spdX;
+	}
+
+	public void setSpdX(double spdX) {
+		this.spdX = spdX;
+	}
+
+	public double getSpdY() {
+		return spdY;
+	}
+
+	public void setSpdY(double spdY) {
+		this.spdY = spdY;
+	}
+
+	public double getGravity() {
+		return gravity;
+	}
+
+	public void setGravity(double gravity) {
+		this.gravity = gravity;
+	}
+
+	public double getCharge() {
+		return charge;
+	}
+
+	public void setCharge(double charge) {
+		this.charge = charge;
+	}
+
+	public Image getVisage() {
+		return visage;
+	}
+
+	public void setVisage(Image visage) {
+		this.visage = visage;
+	}
+
+	public double fireX(double balistaPixelX, double scaleFactor, double mousePosX)
+	{
+
+		spdX = (balistaPixelX - mousePosX) * scaleFactor;
+
+		return spdX;
+
+	}
+	public double fireY(double balistaPixelY, double scaleFactor, double mousePosY)
+	{
+
+		spdX = (balistaPixelY - mousePosY) * scaleFactor;
+
+		return spdX;
+
+	}
+	public double updatePosX(double posX, double spdX, double timestep)
+	{
+
+		posX = posX + spdX * timestep;
+
+		return posX;
+
+	}
+	public double updatePosY(double posY, double spdY, double timestep)
+	{
+
+		posY = posY + spdY * timestep;
+
+		return posY;
+
+	}
+	public double updateSpeedY(double spdY, double timestep, double gravity)
+	{
+
+		spdY = spdY + timestep * gravity;
+
+		return spdY;
+
+	}
+
+	public Circle aim(double balistaPixleX, double balistaPixleY, double scaleFactor, double  mousePosX, double mousePosY, double posX, double posY, double gravity, double timestep, int instance)
+	{
+
+		spdX = (balistaPixleX - mousePosX) * scaleFactor;
+		spdY = (balistaPixleY - mousePosX) * scaleFactor;
+
+		posX = posX + timestep * spdX;
+		posY = posY + timestep * spdY;
+
+		double tempSpdY = spdY;
+
+		for(double i = 0; i <= 0.5 * (instance + 1); i += timestep) {
+
+			posX = this.updatePosX(posX, spdX, timestep);
+			posY = this.updatePosY(posY, tempSpdY, timestep);
+			tempSpdY = this.updateSpeedY(tempSpdY, timestep, gravity);
+
+		}
+
+		return new Circle(5, posX * scaleFactor, posY * scaleFactor);
+
+	}
+
+}

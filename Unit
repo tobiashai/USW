@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 
 public class Unit {
@@ -94,6 +96,58 @@ public class Unit {
 	}
 	public void setVisage(Image visage) {
 		this.visage = visage;
+	}
+
+
+
+	public void makeMove(double time, ArrayList<Unit> units, int instance) {
+
+		boolean willMove = true;
+		boolean willCharge = false;
+
+		int target = -1;
+
+		for(int i = 0; i < units.size(); i++) {
+			if(units.get(i).isEnemy() != this.isEnemy()) {
+				if(Math.abs(units.get(i).getPosX() - this.getPosX()) <= this.getmSpd() * time)
+					willMove = false;
+				if(Math.abs(units.get(i).getPosX() - this.getPosX()) <= this.getaRng()) {
+					willCharge = true;
+					target = i;
+				}
+			}
+			if(units.get(i).isEnemy() == this.isEnemy() && i < instance)
+				if(Math.abs(units.get(i).getPosX() - this.getPosX()) <= this.getmSpd() * time)
+					willMove = false;
+		}
+
+		if(willMove == true) {
+			if(this.isEnemy() == false) 
+				this.setPosX(this.getPosX() + (this.getmSpd() * time));
+			if(this.isEnemy() == true)
+				this.setPosX(this.getPosX() - (this.getmSpd() * time));
+			this.setCharge(0);
+		}
+
+		if(willCharge == true) {
+			this.setCharge(this.getCharge() + (this.getaSpd() * time));
+		}
+
+		if(target != -1)
+			while(this.getCharge() >= 100) {
+				units.get(target).takeDmg(this.getaDmg(), units, target);
+				this.setCharge(this.getCharge() - 100);
+			}
+
+	}
+
+	public void takeDmg(double dmg, ArrayList<Unit> units, int instance) {
+
+		this.setHealth(this.getHealth() - dmg);
+
+		if(this.getHealth() <= 0)
+			units.remove(instance);
+
 	}
 
 }

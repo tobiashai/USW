@@ -108,7 +108,7 @@ public class Unit {
 		int target = -1;
 
 		for(int i = 0; i < units.size(); i++) {
-			if(units.get(i).isEnemy() != this.isEnemy()) {
+			if(units.get(i).isEnemy() != this.isEnemy() && target == -1) {
 				if(Math.abs(units.get(i).getPosX() - this.getPosX()) <= this.getmSpd() * time)
 					willMove = false;
 				if(Math.abs(units.get(i).getPosX() - this.getPosX()) <= this.getaRng()) {

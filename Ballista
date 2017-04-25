@@ -14,7 +14,7 @@ public class Ballista
 	private double charge;
 	private Image visage;
 
-	private ArrayList<Circle> aim;
+	private ArrayList<Circle> aimList;
 
 	public Ballista(double posX, double posY, double spdX, double spdY, double gravity, double charge, Image visage)
 	{
@@ -129,11 +129,8 @@ public class Ballista
 	public Circle aim(double balistaPixleX, double balistaPixleY, double scaleFactor, double  mousePosX, double mousePosY, double posX, double posY, double gravity, double timestep, int instance)
 	{
 
-		spdX = (balistaPixleX - mousePosX) * scaleFactor;
-		spdY = (balistaPixleY - mousePosX) * scaleFactor;
-
-		posX = posX + timestep * spdX;
-		posY = posY + timestep * spdY;
+		spdX = (balistaPixleX - mousePosX) / scaleFactor;
+		spdY = (balistaPixleY - mousePosX) / scaleFactor;
 
 		double tempSpdY = spdY;
 
@@ -148,5 +145,12 @@ public class Ballista
 		return new Circle(5, posX * scaleFactor, posY * scaleFactor);
 
 	}
+	
+	public void refreshAimList(double balistaPixleX, double balistaPixleY, double scaleFactor, double  mousePosX, double mousePosY, double posX, double posY, double gravity, double timestep) {
+		aimList.clear();
+		for(int i = 0; i < 5; i++)
+			aimList.add(this.aim(balistaPixleX, balistaPixleY, scaleFactor, mousePosX, mousePosY, posX, posY, gravity, timestep, i));
+	}
+	
 
 }
